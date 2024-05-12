@@ -7,7 +7,7 @@ import twitter from "../assets/twitter-removebg-preview.png"
 // Header component remains the same
 const Header = () => {
   return (
-    <header className="bg-red-600 text-white py-4 px-12 flex justify-between items-center">
+    <header className="bg-red-500 text-white py-4 px-12 flex justify-between items-center">
       <h1 className="text-4xl font-bold">
   <span style={{ color: 'white' }}>Summ</span>
   <span style={{ color: 'black' }}>It</span>
@@ -38,7 +38,7 @@ const LoginForm = () => {
         <input type="password" className="w-full p-3 rounded border border-gray-300" placeholder="Password" />
       </div>
       <div className="mb-6 text-right">
-        <a href="#" className="text-sm text-red-600 hover:text-gray-600 underline ">Forgot your password?</a>
+        <a href="#" className="text-sm text-red-500 hover:text-gray-600 underline ">Forgot your password?</a>
       </div>
       <button className="w-full bg-gray-800 text-white p-3 rounded hover:bg-red-600">LOGIN</button>
       <div className="flex items-center my-4">

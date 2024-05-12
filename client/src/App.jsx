@@ -4,6 +4,7 @@ import LoginPage from './pages/login'; // Adjust the import path as necessary
 import HomePage from './pages/home';
 import UploadPage from './pages/upload';
 import TranscriptPage from './pages/transcript';
+import SummaryPage from './pages/summary';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/upload" element={<UploadPage/>}/>
         <Route path="/transcript" element={<TranscriptPage/>}/>
+        <Route path="/summary" element={<SummaryPage/>}/>
       </Routes>
     </Router>
   );

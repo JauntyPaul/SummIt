@@ -7,10 +7,10 @@ import twitter from "../assets/twitter-removebg-preview.png"
 // Header component remains the same
 const Header = () => {
   return (
-    <header className="bg-red-500 text-white py-4 px-12 flex justify-between items-center">
+    <header className="bg-[#ff735c] text-white py-4 px-12 flex justify-between items-center">
       <h1 className="text-4xl font-bold">
-  <span style={{ color: 'white' }}>Summ</span>
-  <span style={{ color: 'black' }}>It</span>
+      <span className="text-white">Summ</span>
+    <span className="text-gray-800">It</span>
 </h1>
 
 
@@ -29,18 +29,18 @@ const LoginForm = () => {
   return (
     <div className="w-full max-w-xs p-8 ml-auto"> {/* Adjusted margin-left */}
       <div className="mb-4">
-        <h2 className="text-center text-2xl text-Gray-600 font-bold ">LOGIN</h2>
+        <h2 className="text-center text-2xl text-Gray-800 font-regular ">LOGIN</h2>
       </div>
       <div className="mb-6">
-        <input type="email" className="w-full p-3 rounded border border-gray-300" placeholder="Email" />
+        <input type="email" className="w-full p-3 border border-gray-300" placeholder="Email" />
       </div>
       <div className="mb-6">
-        <input type="password" className="w-full p-3 rounded border border-gray-300" placeholder="Password" />
+        <input type="password" className="w-full p-3  border border-gray-300" placeholder="Password" />
       </div>
       <div className="mb-6 text-right">
         <a href="#" className="text-sm text-red-500 hover:text-gray-600 underline ">Forgot your password?</a>
       </div>
-      <button className="w-full bg-gray-800 text-white p-3 rounded hover:bg-red-600">LOGIN</button>
+      <button className="w-full bg-gray-800 text-white p-3 hover:bg-red-600">LOGIN</button>
       <div className="flex items-center my-4">
         <div className="flex-grow border-t border-gray-300"></div>
         <span className="flex-shrink mx-4 text-gray-600">OR</span>

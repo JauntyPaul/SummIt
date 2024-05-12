@@ -29,19 +29,19 @@ const SummaryPage = () => {
 
 const Header = () => {
   return (
-    <header className="bg-[#1a2e35] text-white flex justify-between items-center px-4 py-2">
-  <h1 className="font-bold text-4xl">
-    <span style={{ color: 'white' }}>Summ</span>
-    <span style={{ color: 'red' }}>It</span>
+    <header className="bg-[#1a2e35] text-white flex justify-between items-center px-9 py-4">
+  <h1 className="font-bold text-3xl">
+    <span className="text-white">Summ</span>
+    <span className="text-[#ff735c]">It</span>
   </h1>
   <nav className="flex flex-grow justify-end">
-    <ul className="flex space-x-4">
-      <li className="text-lg font-medium hover:underline cursor-pointer">Home</li>
-      <li className="text-lg font-medium hover:underline cursor-pointer">About</li>
-      <li className="text-lg font-medium hover:underline cursor-pointer" style={{ marginRight: '8px' }}>Contact</li> {/* Added marginRight */}
+    <ul className="flex space-x-6">
+      <li className="text-lg font-regular hover:text-gray-300 cursor-pointer">Home</li>
+      <li className="text-lg font-regular hover:text-gray-300 cursor-pointer">About</li>
+      <li className="text-lg font-regular hover:text-gray-300 cursor-pointer" style={{ marginRight: '40px' }}>Contact</li> {/* Added marginRight */}
     </ul>
   </nav>
-  <button className="text-white border border-white px-3 py-1 rounded-full hover:bg-gray-200 hover:text-[#1a2e35] transition-colors duration-200">Logout</button>
+  <button className="text-white border border-white px-5 py-1 rounded-full hover:bg-gray-200 hover:text-[#1a2e35] transition-colors duration-200">Logout</button>
 </header>
   );
 };
@@ -49,12 +49,12 @@ const Header = () => {
 const SummarySection = () => {
   return (
     
-    <div className="w-1/2 bg-[#11111] text-gray-700 p-8 pb-14">
-      <h1 className="text-3xl font-bold mb-6">Summary</h1>
+    <div className="w-1/2 bg-[#11111] text-gray-800 p-8 pb-14">
+      <h1 className="text-3xl font-bold mb-6 text-gray-800">Summary</h1>
       <div className='bg-gray-800 w-140 h-80'>
         
       </div>
-      <button className="bg-[#ff735c] text-white m-5 py-2 px-4 rounded hover:text-gray-900">UPLOAD NEXT FILE</button>
+      <button className="text-gray-800 border border-gray-800 px-6 py-2 rounded-full font-semibold hover:border-gray-500 hover:text-gray-500 mt-5">UPLOAD NEXT FILE</button>
     </div>
   );
 };
@@ -106,8 +106,8 @@ const NewsletterSubscription = () => {
     <div>
       <h3 className="font-bold mb-3">Stay Up to Date</h3>
       <div className="flex mt-4">
-        <input className="bg-white text-[#1a2e35] p-2 rounded-l-full" placeholder="Enter your email" />
-        <button className="bg-white text-[#1a2e35] py-2 px-4 rounded-r-full">
+        <input className="bg-white text-[#1a2e35] p-2 " placeholder="Enter your email" />
+        <button className="bg-white text-[#1a2e35] py-2 px-4 ">
           Submit
         </button>
       </div>

@@ -9,9 +9,29 @@ function UploadPage() {
     setSelectedFile(event.target.files[0]);
   };
 
-  const handleUpload = () => {
-    // Perform upload logic here, you can send the selectedFile to the backend
-    console.log("Selected File:", selectedFile);
+  const handleUpload = async () => {
+    if (!selectedFile) {
+      console.log("No file selected.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('audio', selectedFile);
+
+    try {
+      const response = await fetch('/predict', {
+        method: 'POST',
+        body: formData,
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Response from server:", data);
+      } else {
+        console.error("Failed to upload file:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    }
   };
 
   return (

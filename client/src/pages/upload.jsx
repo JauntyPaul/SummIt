@@ -55,6 +55,19 @@ function UploadPage() {
         </nav>
         <button className="text-white border border-white px-5 py-1 rounded-full hover:bg-gray-200 hover:text-[#1a2e35] transition-colors duration-200">Logout</button>
       </header>
+        <h1 className="font-bold text-3xl">
+          <span className="text-white">Summ</span>
+          <span className="text-[#ff735c]">It</span>
+        </h1>
+        <nav className="flex flex-grow justify-end">
+          <ul className="flex space-x-6">
+            <li className="text-lg font-regular hover:text-gray-300 cursor-pointer">Home</li>
+            <li className="text-lg font-regular hover:text-gray-300 cursor-pointer">About</li>
+            <li className="text-lg font-regular hover:text-gray-300 cursor-pointer" style={{ marginRight: '40px' }}>Contact</li>
+          </ul>
+        </nav>
+        <button className="text-white border border-white px-5 py-1 rounded-full hover:bg-gray-200 hover:text-[#1a2e35] transition-colors duration-200">Logout</button>
+      </header>
 
       <main className="flex flex-col lg:flex-row items-center p-20 flex-1">
         <div className="lg:mr-12 flex-1">
@@ -79,6 +92,7 @@ function UploadPage() {
           </div>
         </div>
 
+        <div className="flex-1 flex justify-center">
         <div className="flex-1 flex justify-center">
           <img src={uplaodimage} alt="Meeting illustration" className="w-3/4 h-auto" />
         </div>
@@ -110,5 +124,7 @@ function UploadPage() {
     </div>
   );
 }
+
+export default UploadPage;
 
 export default UploadPage;

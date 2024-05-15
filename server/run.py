@@ -1,70 +1,43 @@
 from flask import Flask, request, jsonify
-import speech_recognition as sr
-import pandas as pd
+from flask_cors import CORS
 import os
+import subprocess
+import json
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})  # Allow CORS for all origins
 
-def predict(audio_file):
-    def rttm_to_dataframe(rttm_file_data):
-        # Define column names for database
-        columns = ["Type", "File ID", "Channel", "Start Time", "Duration", "Orthography", "Confidence", "Speaker", 'x', 'y']
-
-        # Process each line of RTTM file
-        lines = rttm_file_data.strip().split('\n')
-        data = [line.strip().split() for line in lines]
-
-        # Create the dataframe
-        df = pd.DataFrame(data, columns=columns)
-        df = df.drop(['x', 'y', "Orthography", "Confidence"], axis=1)  # Dropping certain redundant columns
-        return df
-
-    def extract_text_from_audio(audio_data, start_time, end_time):
-        # Initialize the recognizer
-        r = sr.Recognizer()
-
-        # Load audio data
-        with sr.AudioData(audio_data, None) as source:
-            audio = r.record(source, duration=end_time, offset=start_time)
-
-        # Perform speech to text
-        text = r.recognize_google(audio)
-
-        return text
-
-    # Process audio
-    rttm_file_data = audio_file.read().decode("utf-8")
-    df = rttm_to_dataframe(rttm_file_data)
-    df = df.astype({'Start Time': 'float'})
-    df = df.astype({'Duration': 'float'})
-    df['Utterance'] = None
-    df['End Time'] = df['Start Time'] + df['Duration']
-
-    for ind in df.index:
-        start_time = df['Start Time'][ind]
-        end_time = df['End Time'][ind]
-
-        try:
-            transcription = extract_text_from_audio(audio_file.read(), start_time, end_time)
-            df.at[ind, 'Utterance'] = transcription
-        except:
-            df.at[ind, 'Utterance'] = 'Not Found'
-
-    # Convert dataframe to JSON
-    json_result = df.to_json(orient='records')
-
-    return json_result
-
+UPLOAD_FOLDER = 'uploads'
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
 
 @app.route('/predict', methods=['POST'])
 def predict_audio():
     if 'audio' not in request.files:
-        return jsonify({'error': 'No file provided'})
+        return jsonify({'error': 'No audio file provided'}), 400
 
     audio_file = request.files['audio']
-    result = predict(audio_file)
+    if audio_file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
 
-    return jsonify(result)
+    file_path = os.path.join(UPLOAD_FOLDER, "input_audio.wav")
+    audio_file.save(file_path)
+    
+    # Now call your main program
+    result = subprocess.run(['python', 'main.py'], capture_output=True, text=True)
+
+    if result.returncode != 0:
+        return jsonify({'error': 'Error processing audio file', 'details': result.stderr}), 500
+
+    # Read the resulting JSON file
+    try:
+        with open('output.json', 'r') as f:
+            response = json.load(f)
+    except Exception as e:
+        return jsonify({'error': 'Failed to read output file', 'details': str(e)}), 500
+
+    # Return the JSON response
+    return jsonify({'result': response})
 
 if __name__ == '__main__':
     app.run(debug=True)

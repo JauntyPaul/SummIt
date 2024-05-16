@@ -55,7 +55,7 @@ def predict_audio():
     
     # Now call your main program
 
-    result = subprocess.run(['python', 'main.py'], capture_output=True, text=True)
+    result = subprocess.run(['python3', 'main.py'], capture_output=True, text=True)
 
     if result.returncode != 0:
         return jsonify({'error': 'Error processing audio file', 'details': result.stderr}), 500

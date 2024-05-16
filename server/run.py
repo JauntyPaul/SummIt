@@ -3,10 +3,14 @@ from flask_cors import CORS
 import os
 import subprocess
 import json
+import openai
+
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})  # Allow CORS for all origins
+CORS(app, resources={r"/": {"origins": ""}})  # Allow CORS for all origins
 
+
+openai.api_key = "Tom bro ithu nee settu aakanam, code njan whtsapp chaiyame"
 UPLOAD_FOLDER = 'uploads'
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
@@ -34,11 +38,24 @@ def predict_audio():
     except Exception as e:
         return jsonify({'error': 'Failed to read output file', 'details': str(e)}), 500
 
-@app.route('/summary', methods=['GET'])
+@app.route("/summary", methods=["GET"])
 def summary():
-    return "test", 200
+    try:
+        # Get any parameters needed for the completion request
+        prompt = request.args.get('prompt', '')
+        # Additional parameters you may need, like temperature, max_tokens, etc.
+
+        # Generate summary using OpenAI API
+        model = "text-davinci-003"
+        completions = openai.Completion.create(engine=model, prompt=prompt, max_tokens=1024, n=1, stop=None, temperature=0.7)
+        summary_text = completions.choices[0].text
+
+        # Return the summary to the client
+        return jsonify({'summary': summary_text}), 200
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 
-
-if __name__ == '__main__':
+if __name__ == '_main_':
     app.run(debug=True)

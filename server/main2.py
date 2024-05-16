@@ -1,10 +1,9 @@
 import pandas as pd
 import speech_recognition as sr
 from pyannote.audio import Pipeline
-import json
 
 # Load pretrained speaker diarization model
-pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization", use_auth_token="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")
+pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization",use_auth_token="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")
 
 # Apply pipeline to audio file
 diarization = pipeline("./uploads/input_audio.wav", num_speakers=2)
@@ -40,7 +39,7 @@ def extract_text_from_audio(audio_file_path, start_time, end_time):
 
     # Load audio file
     with sr.AudioFile(audio_file_path) as source:
-        audio = r.record(source, duration=end_time - start_time, offset=start_time)
+        audio = r.record(source, duration=end_time, offset=start_time)
 
     # Perform speech to text
     text = r.recognize_google(audio)
@@ -65,17 +64,10 @@ for ind in df.index:
     except:
         df['Utterance'][ind] = 'Not Found'
 
+# Print dataframe
+print(df)
+
 # Drop unnecessary columns
 df = df.drop(["Type", "File ID", "Channel"], axis=1)
 
-# Convert the dataframe to JSON format
-output_json = df.to_json(orient='records')
-
-# Save the JSON output to a file
-with open('output.json', 'w') as f:
-    f.write(output_json)
-
-# Print the JSON output (optional, can be useful for debugging)
-print(output_json)
-
-
+df

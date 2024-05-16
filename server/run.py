@@ -34,5 +34,11 @@ def predict_audio():
     except Exception as e:
         return jsonify({'error': 'Failed to read output file', 'details': str(e)}), 500
 
+@app.route('/summary', methods=['GET'])
+def summary():
+    return "test", 200
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)

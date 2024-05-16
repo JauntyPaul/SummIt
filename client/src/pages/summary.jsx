@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from '../assets/SummIt-logo.png'; // Replace with the actual logo path
 import illustration from '../assets/summaryimage.png'; // Replace with the actual illustration path
 import facebook from '.././assets/fb.jpeg';
@@ -6,6 +6,23 @@ import insta from '.././assets/insta.jpeg';
 import twitter from '.././assets/twitter.jpeg';
 
 const SummaryPage = () => {
+    useEffect(() => {
+      fetchSummary();
+    }, []);
+  
+    const fetchSummary = async () => {
+  try {
+    const response = await fetch('http://127.0.0.1:5000/summary');
+    const data = await response.text();
+    console.log(data); // Should log "test"
+  } catch (error) {
+    console.error('Error fetching summary:', error);
+  }
+};
+
+// Call fetchSummary in useEffect or any other relevant place in your component
+
+  
   return (
     <div className="flex flex-col min-h-screen bg-white font-outfit">
       <Header />

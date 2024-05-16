@@ -11,7 +11,31 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})  # Allow CORS for all origins
 
 
-openai.api_key = "Tom bro ithu nee settu aakanam, code njan whtsapp chaiyame"
+openai.api_key = "API KEY"
+
+def get_response(question):
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {
+                "role": "system",
+                "content": "You are a helper, who Helps in summarition the meating in 200 words,With detail Explaination",
+            },
+            {
+                "role": "user",
+                "content": question
+            }
+        ],
+        temperature=1,
+        max_tokens=256,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0
+    )
+    
+    processed = response["choices"][0]["message"]["content"]
+    return processed
+
 
 UPLOAD_FOLDER = 'uploads'
 if not os.path.exists(UPLOAD_FOLDER):
@@ -47,8 +71,20 @@ def predict_audio():
     return jsonify({'result': response})
 
 
-# @app.route("/summary", methods=["GET"])
-# def summary():
+@app.route("/summary", methods=["GET"])
+def summary():
+    # Read JSON data from file
+    with open('./output.json') as f:
+        data = json.load(f)
+
+    # Prepare question from JSON data including speaker information
+    question = '\n'.join([f"{item['Speaker']}: {item['Utterance']}" for item in data])
+
+    # Get response
+    processed_response = get_response(question)
+
+    # Return processed response to the frontend
+    return jsonify({'summary': processed_response})
 
 
 if __name__ == '__main__':

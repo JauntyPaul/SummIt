@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '.././App.css';
-import uplaodimage from "../assets/uploadpage.jpg"
+import uploadImage from "../assets/uploadpage.jpg";
 
 function UploadPage() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate(); // Hook to navigate programmatically
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -27,6 +29,7 @@ function UploadPage() {
       if (response.ok) {
         const data = await response.json();
         console.log("Response from server:", data);
+        navigate('/transcript', { state: { transcriptData: data.result } }); // Navigate to transcript page with state
       } else {
         console.error("Failed to upload file:", response.statusText);
       }
@@ -58,18 +61,17 @@ function UploadPage() {
           <p className="text-gray-700 mb-8 text-left">
             The SummIt upload page offers a seamless experience for uploading meeting audio files, ensuring effortless access to our summarization capabilities. You can easily drag and drop their audio files or select them from their device, initiating the summarization process with just a few clicks.
           </p>
-         
+          
           <div className="flex flex-col space-y-5">
-            {/* Replace INSERT FILES button with file input */}
-            <h2 htmlFor="audioFile" className="bg-[#11111] text-gray-600 px-5 py-1 font-regular ">INSERT FILES</h2>
+            <label htmlFor="audioFile" className="bg-[#11111] text-gray-600 px-5 py-1 font-regular hover:text-gray-800 cursor-pointer">INSERT FILES</label>
             <input type="file" accept=".wav" className="hidden" id="audioFile" onChange={handleFileChange} />
 
             <div className="flex justify-center">
-              <button className="text-gray-800 border border-gray-800 px-20 py-2 rounded-full font-semibold hover:border-gray-500 hover:text-gray-500 " onClick={() => setShowModal(true)}>UPLOAD FILE</button>
+              <button className="text-gray-800 border border-gray-800 px-20 py-2 rounded-full font-semibold hover:border-gray-500 hover:text-gray-500" onClick={() => setShowModal(true)}>UPLOAD FILE</button>
             </div>
 
             <div className="flex justify-center">
-              <button className="bg-[#ff735c] rounded-full px-20 py-3 text-white font-semibold hover:bg-[#cc5a47] transition-colors duration-200">GET TRANSCRIPT</button>
+              <button className="bg-[#ff735c] rounded-full px-20 py-3 text-white font-semibold hover:bg-[#cc5a47] transition-colors duration-200" onClick={handleUpload}>GET TRANSCRIPT</button>
             </div>
 
             <span className="text-sm font-thin">MAX 25 MB</span>
@@ -77,11 +79,10 @@ function UploadPage() {
         </div>
 
         <div className="flex-1 flex justify-center">
-          <img src={uplaodimage} alt="Meeting illustration" className="w-3/4 h-auto" />
+          <img src={uploadImage} alt="Meeting illustration" className="w-3/4 h-auto" />
         </div>
       </main>
 
-      {/* Modal for uploading file */}
       {showModal && (
         <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-8 rounded-lg">
@@ -112,8 +113,8 @@ function UploadPage() {
           <div>
             <h3 className="font-semibold">STAY UP TO DATE</h3>
             <div className="flex mt-2">
-              <input className="border-2 border-[#1a2e35]  px-4 py-1 text-[#1a2e35] " type="email" placeholder="Enter your email" />
-              <button className="bg-[#1a2e35] text-white  px-4">Submit</button>
+              <input className="border-2 border-[#1a2e35] px-4 py-1 text-[#1a2e35]" type="email" placeholder="Enter your email" />
+              <button className="bg-[#1a2e35] text-white px-4">Submit</button>
             </div>
           </div>
         </div>

@@ -77,3 +77,5 @@ with open('output.json', 'w') as f:
 
 # Print the JSON output (optional, can be useful for debugging)
 print(output_json)
+
+

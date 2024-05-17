@@ -11,7 +11,7 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})  # Allow CORS for all origins
 
 
-openai.api_key = "API KEY"
+openai.api_key = "sk-proj-7BbzRmYJLH1EoxscwoLZT3BlbkFJ47bkkbzd7eCOxi8UwqvV"
 
 def get_response(question):
     response = openai.ChatCompletion.create(

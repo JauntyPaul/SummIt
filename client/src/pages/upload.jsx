@@ -47,12 +47,11 @@ function UploadPage() {
         </h1>
         <nav className="flex flex-grow justify-end">
           <ul className="flex space-x-6">
-            <li className="text-lg font-regular hover:text-gray-300 cursor-pointer">Home</li>
-            <li className="text-lg font-regular hover:text-gray-300 cursor-pointer">About</li>
-            <li className="text-lg font-regular hover:text-gray-300 cursor-pointer" style={{ marginRight: '40px' }}>Contact</li>
+            <li className="text-lg font-regular hover:text-gray-300 cursor-pointer" onClick={() => navigate('/home')}>Home</li>
+            <li className="text-lg font-regular hover:text-gray-300 cursor-pointer" onClick={() => window.open("https://www.linkedin.com/in/sam-thomas-6ab3a1227/", "_blank")} style={{ marginRight: '40px' }}>Contact</li>
           </ul>
         </nav>
-        <button className="text-white border border-white px-5 py-1 rounded-full hover:bg-gray-200 hover:text-[#1a2e35] transition-colors duration-200">Logout</button>
+        <button className="text-white border border-white px-5 py-1 rounded-full hover:bg-gray-200 hover:text-[#1a2e35] transition-colors duration-200" onClick={() => navigate('/login')}>Logout</button>
       </header>
 
       <main className="flex flex-col lg:flex-row items-center p-20 flex-1">
@@ -63,16 +62,14 @@ function UploadPage() {
           </p>
           
           <div className="flex flex-col space-y-5">
-            <label htmlFor="audioFile" className="bg-[#11111] text-gray-600 px-5 py-1 font-regular hover:text-gray-800 cursor-pointer">INSERT FILES</label>
+            <label className="bg-[#11111] text-gray-600 px-5 py-1 font-regular ">INSERT FILES BELOW</label>
             <input type="file" accept=".wav" className="hidden" id="audioFile" onChange={handleFileChange} />
 
             <div className="flex justify-center">
-              <button className="text-gray-800 border border-gray-800 px-20 py-2 rounded-full font-semibold hover:border-gray-500 hover:text-gray-500" onClick={() => setShowModal(true)}>UPLOAD FILE</button>
+              <button className="text-white border border-[#ff735c] bg-[#ff735c] px-20 py-2 rounded-full font-semibold hover:bg-[#cc5a47] transition-colors duration-200" onClick={() => setShowModal(true)}>GET TRANSCRIPT</button>
             </div>
 
-            <div className="flex justify-center">
-              <button className="bg-[#ff735c] rounded-full px-20 py-3 text-white font-semibold hover:bg-[#cc5a47] transition-colors duration-200" onClick={handleUpload}>GET TRANSCRIPT</button>
-            </div>
+            
 
             <span className="text-sm font-thin">MAX 25 MB</span>
           </div>
@@ -100,15 +97,15 @@ function UploadPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="space-y-2">
             <h3 className="font-semibold">SummIt</h3>
-            <div>Home</div>
-            <div>About us</div>
-            <div>Get Started</div>
+            <div classname="text-lg font-regular hover:text-gray-500 cursor-pointer" onClick={() => navigate('/home')}>Home</div>
+            <div className=" font-regular cursor-pointer" onClick={() => window.open("https://www.linkedin.com/in/sam-thomas-6ab3a1227/", "_blank")} style={{ marginRight: '0px' }}>Contact us</div>
+            
           </div>
           <div className="space-y-2">
             <h3 className="font-semibold">Contact</h3>
-            <div>Linkedin</div>
-            <div>Instagram</div>
-            <div>Facebook</div>
+            <div onClick={() => window.open("https://www.linkedin.com/in/sam-thomas-6ab3a1227/", "_blank")} style={{cursor: "pointer"}}>Linkedin</div>
+            <div onClick={() => window.open("https://www.instagram.com", "_blank")} style={{cursor: "pointer"}}>Instagram</div>
+            <div onClick={() => window.open("https://www.facebook.com", "_blank")} style={{cursor: "pointer"}}>Facebook</div>
           </div>
           <div>
             <h3 className="font-semibold">STAY UP TO DATE</h3>

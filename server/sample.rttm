@@ -1,4 +1,6 @@
-SPEAKER input_audio 1 0.998 1.962 <NA> <NA> SPEAKER_01 <NA> <NA>
-SPEAKER input_audio 1 4.360 3.294 <NA> <NA> SPEAKER_00 <NA> <NA>
-SPEAKER input_audio 1 4.428 0.068 <NA> <NA> SPEAKER_01 <NA> <NA>
-SPEAKER input_audio 1 9.138 0.785 <NA> <NA> SPEAKER_01 <NA> <NA>
+SPEAKER input_audio 1 0.009 1.297 <NA> <NA> SPEAKER_01 <NA> <NA>
+SPEAKER input_audio 1 2.005 1.792 <NA> <NA> SPEAKER_00 <NA> <NA>
+SPEAKER input_audio 1 4.360 1.075 <NA> <NA> SPEAKER_01 <NA> <NA>
+SPEAKER input_audio 1 5.759 1.519 <NA> <NA> SPEAKER_00 <NA> <NA>
+SPEAKER input_audio 1 7.534 1.229 <NA> <NA> SPEAKER_01 <NA> <NA>
+SPEAKER input_audio 1 9.292 1.689 <NA> <NA> SPEAKER_00 <NA> <NA>
